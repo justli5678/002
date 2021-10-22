@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.databasedemo.mapper.StudentMapper">
+    <resultMap id="result" type="com.example.databasedemo.entity.Student">
+        <result column="no" jdbcType="INTEGER" property="no" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="age" jdbcType="INTEGER" property="age" />
+    </resultMap>
+
+    <select id="findAllStudent" resultType="com.example.databasedemo.entity.Student">
+        select  * from student;
+    </select>
+
+    <select id="findStudentByno" resultType="com.example.databasedemo.entity.Student">
+        select * from student where no=#{no};
+    </select>
+    <select id="findStudentByname" resultType="com.example.databasedemo.entity.Student">
+        select * from student where name=#{name};
+    </select>
+
+    <insert id="insertStudent" parameterType="com.example.databasedemo.entity.Student" keyProperty="no" useGeneratedKeys="true">
+        insert into student(name,age) values (#{name},#{age});
+    </insert>
+
+    <update id="updateStudent" parameterType="com.example.databasedemo.entity.Student">
+        update student set name=#{name},age=#{age} where no=#{no};
+    </update>
+
+    <delete id="deleteStudent" parameterType="com.example.databasedemo.entity.Student">
+        delete from  where no=#{no};
+    </delete>
+</mapper>
+
+
+
